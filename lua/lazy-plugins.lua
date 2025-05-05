@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea85de2 (add lazy-events plugin and config)
 -- https://github.com/bwpge/lazy-events.nvim
 vim.g.lazy_events_config = {
   simple = {
@@ -6,6 +9,7 @@ vim.g.lazy_events_config = {
   }
 }
 
+<<<<<<< HEAD
 require('lazy').setup({
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
@@ -18,9 +22,14 @@ require('lazy').setup({
   { import = 'kickstart.plugins'},
 
 =======
+=======
+>>>>>>> ea85de2 (add lazy-events plugin and config)
 require('lazy').setup({
   --
   -- import automatically all plugins
+  --
+  -- Required for event = 'LazyFile'
+  { "bwpge/lazy-events.nvim", import = "lazy-events.import", lazy = false },
   { import = 'custom.plugins' },
   { import = 'kickstart.plugins'},
   --
