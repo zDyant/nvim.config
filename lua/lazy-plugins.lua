@@ -1,9 +1,19 @@
+-- https://github.com/bwpge/lazy-events.nvim
+vim.g.lazy_events_config = {
+  simple = {
+    LazyFile = { "BufReadPost", "BufNewFile", "BufWritePre" },
+  }
+}
+
 require('lazy').setup({
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
   -- require 'custom.plugins.debug',
   --
   -- import automatically all plugins
+  --
+  -- Required for event = 'LazyFile'
+  { "bwpge/lazy-events.nvim", import = "lazy-events.import", lazy = false },
   { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
