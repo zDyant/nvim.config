@@ -5,6 +5,12 @@ return {
     config = function()
       require('mini.pairs').setup()
       require('mini.cursorword').setup()
+      require('mini.indentscope').setup({
+        options = {
+            try_as_border = true,
+        },
+        symbol = '|',
+      })
       require('mini.splitjoin').setup({
           mappings = {toggle = 'gs', split = '', join = '',},
       })
