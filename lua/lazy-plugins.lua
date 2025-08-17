@@ -14,6 +14,7 @@ require('lazy').setup({
   
   -- import automatically all plugins
   { import = 'custom.plugins' },
+  { import = 'kickstart.plugins'},
 
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
