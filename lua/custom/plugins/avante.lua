@@ -20,7 +20,7 @@ return {
     provider = 'gemini',
     providers = {
       gemini = {
-        model = 'gemini-2.5-flash-preview-04-17',
+        model = 'gemini-2.5-flash',
         timeout = 30000, -- Timeout in milliseconds
         extra_request_body = {
           temperature = 0.75,
@@ -41,7 +41,7 @@ return {
     'stevearc/dressing.nvim', -- for input provider dressing
     'folke/snacks.nvim', -- for input provider snacks
     'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
-    'zbirenbaum/copilot.lua', -- for providers='copilot'
+    -- 'zbirenbaum/copilot.lua', -- for providers='copilot'
     {
       -- support for image pasting
       'HakonHarnes/img-clip.nvim',
