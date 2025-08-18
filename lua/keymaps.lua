@@ -3,17 +3,18 @@
 --
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save file' })
 
--- Move current line / block with Alt-j/k ala vscode.
-vim.keymap.set('i', '<A-k>', '<ESC>:m .-2<CR>==gi', { desc = 'Move line up', silent = true })
-vim.keymap.set('i', '<A-j>', '<ESC>:m .+1<CR>==gi', { desc = 'Move line down', silent = true })
+-- Use mini.move
+  -- Move current line / block with Alt-j/k ala vscode.
+  -- vim.keymap.set('i', '<A-k>', '<ESC>:m .-2<CR>==gi', { desc = 'Move line up', silent = true })
+  -- vim.keymap.set('i', '<A-j>', '<ESC>:m .+1<CR>==gi', { desc = 'Move line down', silent = true })
+  --
+  -- Normal Mode
+  -- vim.keymap.set('n', '<A-k>', '<ESC>:m .-2<CR>==', { desc = 'Move line up', silent = true })
+  -- vim.keymap.set('n', '<A-j>', '<ESC>:m .+1<CR>==', { desc = 'Move line down', silent = true })
 
--- Normal Mode
-vim.keymap.set('n', '<A-k>', '<ESC>:m .-2<CR>==', { desc = 'Move line up', silent = true })
-vim.keymap.set('n', '<A-j>', '<ESC>:m .+1<CR>==', { desc = 'Move line down', silent = true })
-
--- Visual block mode
-vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv-gv", { desc = 'Move block up', silent = true })
-vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv-gv", { desc = 'Move block down', silent = true })
+  -- Visual block mode
+  -- vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv-gv", { desc = 'Move block up', silent = true })
+  -- vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv-gv", { desc = 'Move block down', silent = true })
 
 
 -- Clear highlights on search when pressing <Esc> in normal mode
