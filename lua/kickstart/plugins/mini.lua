@@ -5,6 +5,7 @@ return {
     config = function()
       require('mini.pairs').setup()
       require('mini.move').setup()
+      require('mini.align').setup()
       require('mini.cursorword').setup()
       require('mini.indentscope').setup({
         options = {
