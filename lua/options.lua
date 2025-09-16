@@ -3,23 +3,42 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+
 -- Make line numbers default
 vim.o.number = true
 vim.o.relativenumber = true
+
+-- Copy indent from current line when starting new one (default: true)
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 2
+
+-- Borders on layout
+vim.o.winborder = 'single'
+
+-- Number of spaces that a tab counts for while performing editing operations (default: 0)
+vim.o.softtabstop = 4
+
+vim.o.showtabline = 2 -- Always show tabs (default: 1)
+
+-- We don't need to see things like -- INSERT -- anymore (default: true)
+vim.o.showmode = false
+
+-- Sync clipboard between OS and Neovim. (default: '')
+vim.o.clipboard = 'unnamedplus'
+
+-- Display lines as one long line (default: true)
+vim.o.wrap = false
+
+-- Companion to wrap, don't split words (default: false)
+vim.o.linebreak = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -50,7 +69,7 @@ vim.o.splitbelow = true
 vim.o.list = true
 ---@diagnostic disable-next-line: missing-fields
 -- has to be vim.opt
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
