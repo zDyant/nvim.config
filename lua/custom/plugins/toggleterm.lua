@@ -21,7 +21,7 @@ return {
 
         -- Only relevant if direction = 'float'
         float_opts = {
-          border = "curved", -- single | double | shadow | curved | etc
+          border = "single", -- single | double | shadow | curved | etc
           winblend = 0,
           highlights = {
             border = "Normal",
