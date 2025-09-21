@@ -1,21 +1,18 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 --
+local opts = { noremap = true, silent = true }
+
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save file' })
 
--- Use mini.move
-  -- Move current line / block with Alt-j/k ala vscode.
-  -- vim.keymap.set('i', '<A-k>', '<ESC>:m .-2<CR>==gi', { desc = 'Move line up', silent = true })
-  -- vim.keymap.set('i', '<A-j>', '<ESC>:m .+1<CR>==gi', { desc = 'Move line down', silent = true })
-  --
-  -- Normal Mode
-  -- vim.keymap.set('n', '<A-k>', '<ESC>:m .-2<CR>==', { desc = 'Move line up', silent = true })
-  -- vim.keymap.set('n', '<A-j>', '<ESC>:m .+1<CR>==', { desc = 'Move line down', silent = true })
+vim.keymap.set('n', 'x', '"_x', { desc = 'delete single character without copying into register'})
 
-  -- Visual block mode
-  -- vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv-gv", { desc = 'Move block up', silent = true })
-  -- vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv-gv", { desc = 'Move block down', silent = true })
+-- Find and center cursor
+vim.keymap.set('n', 'n', 'nzzzv', opts)
+vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
+
+vim.keymap.set('n', '<leader>tw', ':set wrap!<CR>', { desc = '[T]oggle line [w]rapping' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -48,10 +45,10 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
-vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
-vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
-vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
-vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+vim.keymap.set('n', '<C-S-h>', '<C-w>H', { desc = 'Move window to the left' })
+vim.keymap.set('n', '<C-S-l>', '<C-w>L', { desc = 'Move window to the right' })
+vim.keymap.set('n', '<C-S-j>', '<C-w>J', { desc = 'Move window to the lower' })
+vim.keymap.set('n', '<C-S-k>', '<C-w>K', { desc = 'Move window to the upper' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
