@@ -54,6 +54,7 @@ return {
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>o', group = '[O]penCode', mode = { 'n' , 'v' } },
+        { '<leader>x', group = 'Trouble' }
       },
     },
   },
