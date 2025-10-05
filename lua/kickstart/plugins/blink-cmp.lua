@@ -100,14 +100,28 @@ return {
               -- For mini.icons
               kind_icon = {
                 text = function(ctx)
-                  if vim.tbl_contains({ "Path" }, ctx.source_name) then
-                    local mini_icon, _ = require("mini.icons").get_icon(ctx.item.data.type, ctx.label)
-                    if mini_icon then return mini_icon .. ctx.icon_gap end
+                  if ctx.source_name ~= "Path" then
+                    return require("lspkind").symbolic(ctx.kind, { mode = "symbol" }) .. ctx.icon_gap
                   end
 
-                  -- Fall back to lspkind
-                  local icon = require("lspkind").symbolic(ctx.kind, { mode = "symbol" })
-                  return icon .. ctx.icon_gap
+                  local is_unknown_type = vim.tbl_contains({ "link", "socket", "fifo", "char", "block", "unknown" }, ctx.item.data.type)
+                  local mini_icon, _ = require("mini.icons").get(
+                    is_unknown_type and "os" or ctx.item.data.type,
+                    is_unknown_type and "" or ctx.label
+                  )
+
+                  return (mini_icon or ctx.kind_icon) .. ctx.icon_gap
+                end,
+
+                highlight = function(ctx)
+                  if ctx.source_name ~= "Path" then return ctx.kind_hl end
+
+                  local is_unknown_type = vim.tbl_contains({ "link", "socket", "fifo", "char", "block", "unknown" }, ctx.item.data.type)
+                  local mini_icon, mini_hl = require("mini.icons").get(
+                    is_unknown_type and "os" or ctx.item.data.type,
+                    is_unknown_type and "" or ctx.label
+                  )
+                  return mini_icon ~= nil and mini_hl or ctx.kind_hl
                 end,
               },
 
@@ -122,7 +136,7 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         },
