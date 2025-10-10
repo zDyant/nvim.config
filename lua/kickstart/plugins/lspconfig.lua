@@ -173,7 +173,7 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        rust_analyzer = {},
+        -- rust_analyzer = {}, WARN: Mason automatically call setup on this, and should not be enabled with rustaceanvim
         ts_ls = {},
         astro = {},
         hyprls = {},
@@ -204,7 +204,7 @@ return {
       vim.list_extend(ensure_installed, {
         'nixfmt', -- Nix formatter
         'rustfmt', -- Rust formatter
-        'rust_analyzer',
+        -- 'rust-analyzer', WARN: Mason automatically call setup on this, and should not be enabled with rustaceanvim
         'stylua', -- Lua formatter
         'prettierd', -- Multi-language formatter
         'typescript-language-server', -- JS/TS LSP
