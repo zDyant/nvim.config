@@ -177,10 +177,12 @@ return {
         ts_ls = {},
         astro = {},
         hyprls = {},
-        nil_ls = {},
         cssls = {},
         html = {},
         dockerls = {},
+
+        -- nil_ls = { enabled = false },
+        -- Nixd is not avaible on mason
 
         lua_ls = {
           -- cmd = { ... },
@@ -198,6 +200,36 @@ return {
         },
       }
 
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'nix',
+        callback = function(args)
+          vim.lsp.start {
+            name = 'nixd',
+            cmd = { 'nixd' },
+            root_dir = vim.fs.root(args.buf, { 'flake.nix', 'default.nix', '.git' }) or vim.fn.getcwd(),
+            capabilities = vim.lsp.protocol.make_client_capabilities(),
+            settings = {
+              nixd = {
+                nixpkgs = {
+                  expr = 'import <nixpkgs> { }',
+                },
+                formatting = {
+                  command = { 'nixfmt' },
+                },
+                options = {
+                  nixos = {
+                    expr = '(builtins.getFlake ("git+file://" + toString /home/zdyant/Documents/dots/)).nixosConfigurations.zdyant.options',
+                  },
+                  home_manager = {
+                    expr = '(builtins.getFlake (builtins.toString /home/zdyant/Documents/dots/)).nixosConfigurations.zdyant.options.home-manager.users.type.getSubOptions []',
+                  },
+                },
+              },
+            },
+          }
+        end,
+      })
+
       -- INFO: `mason` had to be setup earlier: to configure its options see the
       -- `dependencies` table for `nvim-lspconfig` above.
       local ensure_installed = vim.tbl_keys(servers or {})
@@ -214,8 +246,8 @@ return {
         'hyprls', -- Hyprlang formatter
         'astro-language-server',
       })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         handlers = {
