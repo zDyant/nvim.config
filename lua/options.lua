@@ -3,7 +3,6 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
-
 -- Make line numbers default
 vim.o.number = true
 vim.o.relativenumber = true
@@ -13,6 +12,8 @@ vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 2
+vim.o.softtabstop = 4
+vim.o.expandtab = true
 
 -- Borders on layout
 vim.o.winborder = 'single'
