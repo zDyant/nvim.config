@@ -32,6 +32,12 @@ return {
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+      require('mini.hipatterns').setup {
+        highlighters = {
+          hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
+        },
+        vim.keymap.set('n', '\\Z', ':lua MiniHipatterns.toggle()<CR>', { desc = 'Toggle colorizer', silent = true })
+      }
     end,
   },
 }
