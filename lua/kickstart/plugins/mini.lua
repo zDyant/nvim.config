@@ -8,15 +8,15 @@ return {
       require('mini.align').setup()
       require('mini.cursorword').setup()
       require('mini.icons').setup()
-      require('mini.indentscope').setup({
+      require('mini.indentscope').setup {
         options = {
-            try_as_border = true,
+          try_as_border = true,
         },
         symbol = '|',
-      })
-      require('mini.splitjoin').setup({
-          mappings = {toggle = 'gs', split = '', join = '',},
-      })
+      }
+      require('mini.splitjoin').setup {
+        mappings = { toggle = 'gs', split = '', join = '' },
+      }
 
       -- Better Around/Inside textobjects
       --
