@@ -6,6 +6,13 @@
 -- WARN: Mosty options are managed by mini.basics
 -- :h MiniBasics.config
 
+-- I want UI opaque
+vim.opt.winblend = 0
+vim.opt.pumblend = 0
+
+-- Display lines as one long line (default: true)
+vim.o.wrap = true
+
 -- Make line numbers default
 vim.o.number = true
 vim.o.relativenumber = true
@@ -17,8 +24,10 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 4
 vim.o.expandtab = true
+
 -- Sync clipboard between OS and Neovim. (default: '')
 vim.o.clipboard = 'unnamedplus'
+
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term -- NOTE: You can change these options as you wish! --  For more options, you can see `:help option-list` -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term -- NOTE: You can change these options as you wish!
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term -- NOTE: You can change these options as you wish!
 vim.o.ignorecase = true
