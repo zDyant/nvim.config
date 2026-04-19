@@ -11,10 +11,6 @@ vim.keymap.set('n', 'x', '"_x', { desc = 'delete single character without copyin
 vim.keymap.set('n', 'n', 'nzzzv', opts)
 vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
-vim.keymap.set({ 'n', 'v' }, 'gro', function()
-  vim.cmd.RustLsp 'openDocs'
-end, { remap = true, silent = true, desc = '[O]pen Rust Docs' })
-
 vim.keymap.set('n', '<leader>tw', ':set wrap!<CR>', { desc = '[T]oggle line [w]rapping' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
