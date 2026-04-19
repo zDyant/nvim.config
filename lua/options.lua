@@ -7,6 +7,21 @@
 vim.o.number = true
 vim.o.relativenumber = true
 
+vim.opt.laststatus = 3  -- one global statusline
+vim.opt.statusline = table.concat({
+  " ",
+  "%f",        -- file path
+  "%m",        -- modified flag [+]
+  "%=",        -- align right
+  "%y",        -- filetype
+  " | ",
+  "%l/%L",     -- line:col
+  " ",
+  "%p%%",      -- progress
+  " "
+})
+
+
 -- Copy indent from current line when starting new one (default: true)
 vim.o.autoindent = true
 vim.o.smartindent = true
