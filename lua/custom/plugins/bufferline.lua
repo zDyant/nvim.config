@@ -4,7 +4,7 @@ return {
     'akinsho/bufferline.nvim',
     event = 'VeryLazy',
     branch = 'main',
-    dependencies = 'nvim-tree/nvim-web-devicons',
+    dependencies = 'nvim-mini/mini.icons',
     opts = {},
     keys = {
       { "<Tab>",   ":BufferLineCycleNext<CR>",  desc = "Next Buffer", silent = true },
