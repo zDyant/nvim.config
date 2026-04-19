@@ -1,7 +1,6 @@
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
-    event = { 'LazyFile' },
     cmd = { 'ConformInfo' },
     keys = {
       {

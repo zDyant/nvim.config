@@ -2,7 +2,6 @@ return {
   {
     'smoka7/hop.nvim', -- Neovim motions on speed!
     version = '*',
-    event = 'LazyFile',
     config = function()
       local hop = require 'hop'
       hop.setup()

@@ -1,15 +1,5 @@
--- https://github.com/bwpge/lazy-events.nvim
-vim.g.lazy_events_config = {
-  simple = {
-    LazyFile = { "BufReadPost", "BufNewFile", "BufWritePre" },
-  }
-}
 require('lazy').setup({
   --
-  -- import automatically all plugins
-  --
-  -- Required for event = 'LazyFile'
-  { "bwpge/lazy-events.nvim", import = "lazy-events.import", lazy = false },
   { import = 'custom.plugins' },
   { import = 'kickstart.plugins'},
   --
