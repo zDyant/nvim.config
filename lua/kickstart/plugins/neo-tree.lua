@@ -3,7 +3,6 @@
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
-  lazy = false, -- neo-tree will lazily load itself
   version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',

@@ -1,27 +1,25 @@
 -- https://github.com/folke/which-key.nvim
--- Then, because we use the `opts` key (recommended), the configuration runs
--- after the plugin has been loaded as `require(MODULE).setup(opts)`.
-
+---@module 'lazy'
+---@type LazySpec
 return {
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    ---@module 'which-key'
+    ---@type wk.Opts
+    ---@diagnostic disable-next-line: missing-fields
     opts = {
-      -- delay between pressing a key and opening which-key (milliseconds)
-      -- this setting is independent of vim.opt.timeoutlen
-      delay = 300,
-      icons = {
-        -- set icon mappings to true if you have a Nerd Font
-        mappings = vim.g.have_nerd_font,
-      },
+      delay = 0,
+      icons = { mappings = vim.g.have_nerd_font, },
 
       -- Document existing key chains
       spec = {
-        { '<leader>s', group = '[S]earch' },
+        { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>o', group = '[O]penCode', mode = { 'n' , 'v' } },
-        { '<leader>x', group = 'Trouble' }
+        { '<leader>x', group = 'Trouble' },
+        { 'gr', group = 'LSP Actions', mode = { 'n' } },
       },
     },
   },

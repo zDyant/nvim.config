@@ -1,13 +1,13 @@
 return {
   { -- Collection of various small independent plugins/modules
-    'echasnovski/mini.nvim',
-    version = '*',
+    'nvim-mini/mini.nvim',
     config = function()
       require('mini.pairs').setup()
       require('mini.move').setup()
       require('mini.align').setup()
       require('mini.cursorword').setup()
       require('mini.icons').setup()
+      MiniIcons.mock_nvim_web_devicons()
       require('mini.indentscope').setup {
         options = {
           try_as_border = true,
@@ -24,7 +24,14 @@ return {
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
       --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
+      require('mini.ai').setup {
+        -- INFO: Avoid conflicts with the built-in incremental selection mappings on Neovim>=0.12 (see `:help treesitter-incremental-selection`)
+        mappings = {
+          around_next = 'aa',
+          inside_next = 'ii',
+        },
+        n_lines = 500,
+      }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
@@ -43,7 +50,7 @@ return {
         highlighters = {
           hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
         },
-        vim.keymap.set('n', '\\Z', ':lua MiniHipatterns.toggle()<CR>', { desc = 'Toggle colorizer', silent = true })
+        vim.keymap.set('n', '\\Z', ':lua MiniHipatterns.toggle()<CR>', { desc = 'Toggle colorizer', silent = true }),
       }
     end,
   },
