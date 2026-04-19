@@ -2,25 +2,13 @@
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
+--
+-- WARN: Mosty options are managed by mini.basics
+-- :h MiniBasics.config
 
 -- Make line numbers default
 vim.o.number = true
 vim.o.relativenumber = true
-
-vim.opt.laststatus = 3  -- one global statusline
-vim.opt.statusline = table.concat({
-  " ",
-  "%f",        -- file path
-  "%m",        -- modified flag [+]
-  "%=",        -- align right
-  "%y",        -- filetype
-  " | ",
-  "%l/%L",     -- line:col
-  " ",
-  "%p%%",      -- progress
-  " "
-})
-
 
 -- Copy indent from current line when starting new one (default: true)
 vim.o.autoindent = true
@@ -29,51 +17,12 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 4
 vim.o.expandtab = true
-
--- Borders on layout
-vim.o.winborder = 'single'
-
--- Number of spaces that a tab counts for while performing editing operations (default: 0)
-vim.o.softtabstop = 4
-
-vim.o.showtabline = 2 -- Always show tabs (default: 1)
-
--- We don't need to see things like -- INSERT -- anymore (default: true)
-vim.o.showmode = false
-
 -- Sync clipboard between OS and Neovim. (default: '')
 vim.o.clipboard = 'unnamedplus'
-
--- Display lines as one long line (default: true)
-vim.o.wrap = false
-
--- Companion to wrap, don't split words (default: false)
-vim.o.linebreak = true
-
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.o.mouse = 'a'
-
--- Don't show the mode, since it's already in the status line
-vim.o.showmode = false
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term -- NOTE: You can change these options as you wish! --  For more options, you can see `:help option-list` -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term -- NOTE: You can change these options as you wish!
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term -- NOTE: You can change these options as you wish!
 vim.o.ignorecase = true
 vim.o.smartcase = true
-
--- Keep signcolumn on by default
-vim.o.signcolumn = 'yes'
-
--- Decrease update time
-vim.o.updatetime = 250
-
--- Decrease mapped sequence wait time
-vim.o.timeoutlen = 300
 
 -- Configure how new splits should be opened
 vim.o.splitright = true
@@ -86,12 +35,6 @@ vim.o.list = true
 ---@diagnostic disable-next-line: missing-fields
 -- has to be vim.opt
 vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.o.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
