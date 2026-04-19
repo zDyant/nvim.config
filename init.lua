@@ -12,6 +12,7 @@ vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 require 'options'
+require 'status-bar'
 
 -- [[ Basic Keymaps ]]
 require 'keymaps'
