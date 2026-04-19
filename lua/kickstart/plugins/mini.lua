@@ -32,6 +32,13 @@ return {
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+      require('mini.basics').setup {
+        options = { extra_ui = true },
+        mappings = {
+          windows = true,
+          move_with_alt = true,
+        },
+      }
       require('mini.hipatterns').setup {
         highlighters = {
           hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
