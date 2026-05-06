@@ -153,7 +153,7 @@ return {
                   expr = 'import <nixpkgs> { }',
                 },
                 formatting = {
-                  command = { 'nixfmt' },
+                  command = { 'alejandra' },
                 },
                 options = {
                   nixos = {
@@ -173,7 +173,7 @@ return {
       -- `dependencies` table for `nvim-lspconfig` above.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'nixfmt', -- Nix formatter
+        'alejandra', -- Nix formatter
         'rust-analyzer',
         'stylua', -- Lua formatter
         'prettierd', -- Multi-language formatter
