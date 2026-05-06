@@ -9,7 +9,8 @@ return {
     ---@type wk.Opts
     ---@diagnostic disable-next-line: missing-fields
     opts = {
-      delay = 0,
+      delay = 80,
+      preset = "modern",
       icons = { mappings = vim.g.have_nerd_font, },
 
       -- Document existing key chains
