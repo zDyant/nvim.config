@@ -4,43 +4,47 @@
 --  For more options, you can see `:help option-list`
 --
 -- WARN: Mosty options are managed by mini.basics
+-- https://github.com/nvim-mini/mini.nvim/blob/main/lua/mini/basics.lua
 -- :h MiniBasics.config
 
 -- I want UI opaque
 vim.opt.winblend = 0
 vim.opt.pumblend = 0
+local diagnostic_signs = {
+  Error = ' ',
+  Warn = ' ',
+  Hint = '',
+  Info = '',
+}
+
+vim.diagnostic.config {
+  -- virtual_text = { prefix = '', spacing = 4 },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = diagnostic_signs.Error,
+      [vim.diagnostic.severity.WARN] = diagnostic_signs.Warn,
+      [vim.diagnostic.severity.INFO] = diagnostic_signs.Info,
+      [vim.diagnostic.severity.HINT] = diagnostic_signs.Hint,
+    },
+  },
+  -- underline = true,
+  -- update_in_insert = false,
+  -- severity_sort = true,
+}
 
 -- Display lines as one long line (default: true)
 vim.o.wrap = true
 
--- Make line numbers default
-vim.o.number = true
+vim.opt.showmatch = true -- highlights matching brackets
 vim.o.relativenumber = true
 
 -- Copy indent from current line when starting new one (default: true)
 vim.o.autoindent = true
-vim.o.smartindent = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 4
 vim.o.expandtab = true
 
--- Sync clipboard between OS and Neovim. (default: '')
-vim.o.clipboard = 'unnamedplus'
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term -- NOTE: You can change these options as you wish! --  For more options, you can see `:help option-list` -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term -- NOTE: You can change these options as you wish!
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term -- NOTE: You can change these options as you wish!
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Configure how new splits should be opened
-vim.o.splitright = true
-vim.o.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.o.list = true
 ---@diagnostic disable-next-line: missing-fields
 -- has to be vim.opt
 vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
@@ -54,3 +58,12 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 -- vim: ts=2 sts=2 sw=2 et
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'markdown', 'text', 'gitcommit' },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.spell = true
+  end,
+})
