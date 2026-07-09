@@ -21,7 +21,7 @@ return {
       workspaces = {
         {
           name = 'default',
-          path = '~/Documents/obsidian',
+          path = '~/obsidian',
         },
       },
       follow_url_func = function(url)
