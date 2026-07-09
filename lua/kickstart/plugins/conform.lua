@@ -22,7 +22,7 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         rust = { 'rustfmt', lsp_format = 'fallback' },
-        nix = { 'nixfmt' },
+        nix = { 'alejandra' },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd', 'prettier', stop_after_first = true },
         html = { 'prettierd' },
