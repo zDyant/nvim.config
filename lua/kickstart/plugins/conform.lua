@@ -19,6 +19,10 @@ return {
     ---@type conform.setupOpts
     opts = {
       notify_on_error = true,
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_format = 'fallback',
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
         rust = { 'rustfmt', lsp_format = 'fallback' },
@@ -26,7 +30,6 @@ return {
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd', 'prettier', stop_after_first = true },
         html = { 'prettierd' },
-        htm = { 'prettierd' },
         css = { 'prettierd' },
         markdown = { 'prettierd' },
         latex = { 'tex-fmt' },
