@@ -98,8 +98,27 @@ return {
         html = {},
         dockerls = {},
         stylua = {},
-        -- nil_ls = { enabled = false },
-        -- Nixd is not avaible on mason
+        nixd = {
+          root_markers = { 'flake.nix', 'default.nix', '.git' },
+          settings = {
+            nixd = {
+              nixpkgs = {
+                expr = 'import <nixpkgs> { }',
+              },
+              formatting = {
+                command = { 'alejandra' },
+              },
+              options = {
+                nixos = {
+                  expr = '(builtins.getFlake ("git+file://" + toString /repos/dots)).nixosConfigurations.gaia.options',
+                },
+                home_manager = {
+                  expr = '(builtins.getFlake (builtins.toString /repos/dots)).nixosConfigurations.gaia.options.home-manager.users.type.getSubOptions []',
+                },
+              },
+            },
+          },
+        },
 
         -- Special Lua Config, as recommended by neovim help docs
         lua_ls = {
@@ -139,52 +158,23 @@ return {
         },
       }
 
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = 'nix',
-        callback = function(args)
-          vim.lsp.start {
-            name = 'nixd',
-            cmd = { 'nixd' },
-            root_dir = vim.fs.root(args.buf, { 'flake.nix', 'default.nix', '.git' }) or vim.fn.getcwd(),
-            capabilities = vim.lsp.protocol.make_client_capabilities(),
-            settings = {
-              nixd = {
-                nixpkgs = {
-                  expr = 'import <nixpkgs> { }',
-                },
-                formatting = {
-                  command = { 'alejandra' },
-                },
-                options = {
-                  nixos = {
-                    expr = '(builtins.getFlake ("git+file://" + toString /home/zdyant/Documents/dots/)).nixosConfigurations.zdyant.options',
-                  },
-                  home_manager = {
-                    expr = '(builtins.getFlake (builtins.toString /home/zdyant/Documents/dots/)).nixosConfigurations.zdyant.options.home-manager.users.type.getSubOptions []',
-                  },
-                },
-              },
-            },
-          }
-        end,
-      })
-
       -- INFO: `mason` had to be setup earlier: to configure its options see the
       -- `dependencies` table for `nvim-lspconfig` above.
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
+      local ensure_installed = {
         'alejandra', -- Nix formatter
+        'astro-language-server',
+        'css-lsp',
+        'dockerfile-language-server',
+        'html-lsp',
+        'hyprls',
+        'lua-language-server',
+        'prettierd', -- Multi-language formatter
         'rust-analyzer',
         'stylua', -- Lua formatter
-        'prettierd', -- Multi-language formatter
-        'typescript-language-server', -- JS/TS LSP
-        'html-lsp', -- HTML LSP
-        'css-lsp', -- CSS LSP
         'tex-fmt', -- LaTeX formatter
-        'hyprls', -- Hyprlang formatter
-        'astro-language-server',
         'tree-sitter-cli',
-      })
+        'typescript-language-server', -- JS/TS LSP
+      }
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
       for name, server in pairs(servers) do
