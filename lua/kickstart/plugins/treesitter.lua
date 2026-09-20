@@ -5,7 +5,8 @@ return {
     'nvim-treesitter/nvim-treesitter',
     lazy = false,
     build = ':TSUpdate',
-    branch = 'main', commit = vim.fn.has 'nvim-0.12' == 0 and '7caec274fd19c12b55902a5b795100d21531391f' or nil,
+    branch = 'main',
+    commit = vim.fn.has 'nvim-0.12' == 0 and '7caec274fd19c12b55902a5b795100d21531391f' or nil,
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
     config = function()
       local parsers = {

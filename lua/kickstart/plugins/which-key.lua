@@ -10,15 +10,15 @@ return {
     ---@diagnostic disable-next-line: missing-fields
     opts = {
       delay = 80,
-      preset = "modern",
-      icons = { mappings = vim.g.have_nerd_font, },
+      preset = 'modern',
+      icons = { mappings = vim.g.have_nerd_font },
 
       -- Document existing key chains
       spec = {
         { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>o', group = '[O]penCode', mode = { 'n' , 'v' } },
+        { '<leader>o', group = '[O]penCode', mode = { 'n', 'v' } },
         { '<leader>x', group = 'Trouble' },
         { 'gr', group = 'LSP Actions', mode = { 'n' } },
       },
