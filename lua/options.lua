@@ -52,9 +52,9 @@ vim.o.relativenumber = true
 
 -- Copy indent from current line when starting new one (default: true)
 vim.o.autoindent = true
-vim.o.tabstop = 4
+vim.o.tabstop = 2
 vim.o.shiftwidth = 2
-vim.o.softtabstop = 4
+vim.o.softtabstop = -1
 vim.o.expandtab = true
 
 ---@diagnostic disable-next-line: missing-fields
