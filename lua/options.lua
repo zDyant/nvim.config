@@ -22,7 +22,8 @@ vim.diagnostic.config {
   severity_sort = true,
   float = { border = 'rounded', source = 'if_many' },
   underline = { severity = { min = vim.diagnostic.severity.WARN } },
-  virtual_text = true,
+  -- Render inline messages through tiny-inline-diagnostic instead.
+  virtual_text = false,
   virtual_lines = false,
   signs = {
     text = {
