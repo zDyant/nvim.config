@@ -93,6 +93,40 @@ return {
         end,
       })
 
+      local nix_flake = vim.env.NVIM_NIX_FLAKE
+      if not nix_flake or nix_flake == '' then
+        nix_flake = '/repos/dots'
+      end
+      nix_flake = vim.fs.normalize(nix_flake)
+
+      local nix_host = vim.env.NVIM_NIXOS_HOST
+      if not nix_host or nix_host == '' then
+        nix_host = 'gaia'
+      end
+
+      local nixd_settings = {
+        nixpkgs = {
+          expr = 'import <nixpkgs> { }',
+        },
+        formatting = {
+          command = { 'alejandra' },
+        },
+      }
+
+      if vim.uv.fs_stat(nix_flake .. '/flake.nix') then
+        local flake_ref = vim.json.encode('git+file://' .. nix_flake)
+        local host_attr = vim.json.encode(nix_host)
+        local host_options = ('(builtins.getFlake %s).nixosConfigurations.%s.options'):format(flake_ref, host_attr)
+        nixd_settings.options = {
+          nixos = {
+            expr = host_options,
+          },
+          home_manager = {
+            expr = host_options .. '.home-manager.users.type.getSubOptions []',
+          },
+        }
+      end
+
       ---@type table<string, vim.lsp.Config>
       local servers = {
         rust_analyzer = {},
@@ -105,22 +139,7 @@ return {
         nixd = {
           root_markers = { 'flake.nix', 'default.nix', '.git' },
           settings = {
-            nixd = {
-              nixpkgs = {
-                expr = 'import <nixpkgs> { }',
-              },
-              formatting = {
-                command = { 'alejandra' },
-              },
-              options = {
-                nixos = {
-                  expr = '(builtins.getFlake ("git+file://" + toString /repos/dots)).nixosConfigurations.gaia.options',
-                },
-                home_manager = {
-                  expr = '(builtins.getFlake (builtins.toString /repos/dots)).nixosConfigurations.gaia.options.home-manager.users.type.getSubOptions []',
-                },
-              },
-            },
+            nixd = nixd_settings,
           },
         },
 
