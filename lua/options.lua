@@ -18,7 +18,12 @@ local diagnostic_signs = {
 }
 
 vim.diagnostic.config {
-  -- virtual_text = { prefix = '', spacing = 4 },
+  update_in_insert = false,
+  severity_sort = true,
+  float = { border = 'rounded', source = 'if_many' },
+  underline = { severity = { min = vim.diagnostic.severity.WARN } },
+  virtual_text = true,
+  virtual_lines = false,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = diagnostic_signs.Error,
@@ -27,9 +32,15 @@ vim.diagnostic.config {
       [vim.diagnostic.severity.HINT] = diagnostic_signs.Hint,
     },
   },
-  -- underline = true,
-  -- update_in_insert = false,
-  -- severity_sort = true,
+  jump = {
+    on_jump = function(_, bufnr)
+      vim.diagnostic.open_float {
+        bufnr = bufnr,
+        scope = 'cursor',
+        focus = false,
+      }
+    end,
+  },
 }
 
 -- Display lines as one long line (default: true)
