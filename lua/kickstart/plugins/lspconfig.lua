@@ -171,6 +171,7 @@ return {
         'html-lsp',
         'hyprls',
         'lua-language-server',
+        'markdownlint', -- Markdown linter
         'prettier',
         'prettierd', -- Multi-language formatter
         'ruff', -- Python formatter
