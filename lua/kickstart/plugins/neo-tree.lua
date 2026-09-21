@@ -6,7 +6,7 @@ return {
   version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-mini/mini.icons',
+    'nvim-mini/mini.nvim',
     'MunifTanjim/nui.nvim',
   },
   lazy = false,

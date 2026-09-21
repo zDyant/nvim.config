@@ -28,7 +28,7 @@ return {
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
-      { 'nvim-mini/mini.icons', enabled = vim.g.have_nerd_font },
+      'nvim-mini/mini.nvim',
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
