@@ -102,7 +102,6 @@ return {
         cssls = {},
         html = {},
         dockerls = {},
-        stylua = {},
         nixd = {
           root_markers = { 'flake.nix', 'default.nix', '.git' },
           settings = {
@@ -128,7 +127,7 @@ return {
         -- Special Lua Config, as recommended by neovim help docs
         lua_ls = {
           on_init = function(client)
-            client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
+            client.server_capabilities.documentFormattingProvider = false -- Formatting is handled by StyLua through Conform.
 
             if client.workspace_folders then
               local path = client.workspace_folders[1].name
@@ -155,7 +154,7 @@ return {
           settings = {
             Lua = {
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              format = { enable = false }, -- Formatted by stylua
+              format = { enable = false }, -- Formatting is handled by StyLua through Conform.
             },
           },
         },
