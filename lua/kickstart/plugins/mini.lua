@@ -85,8 +85,8 @@ return {
         highlighters = {
           hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
         },
-        vim.keymap.set('n', '\\Z', ':lua MiniHipatterns.toggle()<CR>', { desc = 'Toggle colorizer', silent = true }),
       }
+      vim.keymap.set('n', '\\Z', MiniHipatterns.toggle, { desc = 'Toggle colorizer' })
     end,
   },
 }
