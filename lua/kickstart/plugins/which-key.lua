@@ -18,7 +18,6 @@ return {
         { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>o', group = '[O]penCode', mode = { 'n', 'v' } },
         { '<leader>x', group = 'Trouble' },
         { 'gr', group = 'LSP Actions', mode = { 'n' } },
       },
