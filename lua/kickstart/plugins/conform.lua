@@ -20,19 +20,55 @@ return {
     opts = {
       notify_on_error = true,
       format_on_save = {
-        timeout_ms = 500,
+        timeout_ms = 2000,
         lsp_format = 'fallback',
       },
       formatters_by_ft = {
-        lua = { 'stylua' },
-        rust = { 'rustfmt', lsp_format = 'fallback' },
-        nix = { 'alejandra' },
+        astro = { 'injected', lsp_format = 'first' },
+        bash = { 'shfmt' },
+        css = { 'prettierd', 'prettier', stop_after_first = true },
+        go = { 'gofmt' },
+        html = { 'prettierd', 'injected' },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd', 'prettier', stop_after_first = true },
-        html = { 'prettierd' },
-        css = { 'prettierd' },
-        markdown = { 'prettierd' },
+        jsonc = { 'prettierd', 'prettier', stop_after_first = true },
         latex = { 'tex-fmt' },
+        less = { 'prettierd', 'prettier', stop_after_first = true },
+        lua = { 'stylua' },
+        markdown = { 'prettierd', 'injected' },
+        nix = { 'alejandra', 'injected' },
+        python = { 'ruff_format' },
+        quarto = { 'injected' },
+        rust = { 'rustfmt', lsp_format = 'fallback' },
+        scss = { 'prettierd', 'prettier', stop_after_first = true },
+        sh = { 'shfmt' },
+        toml = { 'taplo' },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        yaml = { 'prettierd', 'prettier', stop_after_first = true },
+      },
+      formatters = {
+        injected = {
+          options = {
+            -- An unsupported or malformed embedded block should not prevent
+            -- the host document from being formatted.
+            ignore_errors = true,
+            -- Use the stateless Prettier CLI for injected regions. Running
+            -- multiple prettierd jobs in parallel can race its daemon socket.
+            lang_to_formatters = {
+              css = { 'prettier' },
+              html = { 'prettier' },
+              javascript = { 'prettier' },
+              json = { 'prettier' },
+              jsonc = { 'prettier' },
+              less = { 'prettier' },
+              scss = { 'prettier' },
+              typescript = { 'prettier' },
+              yaml = { 'prettier' },
+            },
+          },
+        },
       },
     },
   },

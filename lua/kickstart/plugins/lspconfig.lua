@@ -168,9 +168,14 @@ return {
         'html-lsp',
         'hyprls',
         'lua-language-server',
+        'prettier',
         'prettierd', -- Multi-language formatter
+        'ruff', -- Python formatter
         'rust-analyzer',
+        'shfmt', -- Shell formatter
+        'statix', -- Nix linter
         'stylua', -- Lua formatter
+        'taplo', -- TOML formatter
         'tex-fmt', -- LaTeX formatter
         'tree-sitter-cli',
         'typescript-language-server', -- JS/TS LSP
