@@ -5,7 +5,6 @@ return {
     version = '1.*',
     dependencies = {
       -- Snippet Engine
-      -- -- Snippet Engine
       {
         'L3MON4D3/LuaSnip',
         version = '2.*',
@@ -47,8 +46,6 @@ return {
         preset = 'default',
         ['<C-k>'] = { 'select_prev', 'fallback' },
         ['<C-j>'] = { 'select_next', 'fallback' },
-        ['<C><leader>'] = { 'show' },
-
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         ['<A-1>'] = {
