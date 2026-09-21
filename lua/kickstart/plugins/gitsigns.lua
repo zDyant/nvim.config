@@ -75,7 +75,7 @@ return {
       end, { desc = 'git [b]lame line' })
       map('n', '<leader>hd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
       map('n', '<leader>hD', function()
-        gitsigns.diffthis '@'
+        gitsigns.diffthis '~'
       end, { desc = 'git [D]iff against last commit' })
       map('n', '<leader>hQ', function()
         gitsigns.setqflist 'all'
