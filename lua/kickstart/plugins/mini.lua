@@ -8,6 +8,41 @@ return {
       require('mini.cursorword').setup()
       require('mini.icons').setup()
       MiniIcons.mock_nvim_web_devicons()
+      local statusline = require 'mini.statusline'
+      statusline.setup {
+        use_icons = vim.g.have_nerd_font,
+        content = {
+          active = function()
+            local mode, mode_hl = statusline.section_mode { trunc_width = 120 }
+            local git = statusline.section_git { trunc_width = 40, icon = '' }
+            local diff = statusline.section_diff { trunc_width = 75 }
+            local diagnostics = statusline.section_diagnostics {
+              trunc_width = 75,
+              icon = '󰒡',
+              signs = { ERROR = ' ', WARN = ' ', INFO = ' ', HINT = ' ' },
+            }
+            local lsp = statusline.section_lsp { trunc_width = 75, icon = '󰒋' }
+            local filename = statusline.section_filename { trunc_width = 140 }
+            local fileinfo = statusline.section_fileinfo { trunc_width = 120 }
+            local location = statusline.section_location { trunc_width = 75 }
+            local search = statusline.section_searchcount { trunc_width = 75 }
+
+            return statusline.combine_groups {
+              { hl = mode_hl, strings = { '❯', mode } },
+              { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
+              '%<',
+              { hl = 'MiniStatuslineFilename', strings = { '󰈔', filename } },
+              '%=',
+              { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
+              { hl = mode_hl, strings = { search, '󰍎 ' .. location } },
+            }
+          end,
+          inactive = function()
+            return '%#MiniStatuslineInactive#  %F%m%r%='
+          end,
+        },
+      }
+      vim.o.laststatus = 3
       require('mini.indentscope').setup {
         options = {
           try_as_border = true,
