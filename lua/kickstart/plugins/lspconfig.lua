@@ -58,6 +58,26 @@ return {
           map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client and client.name == 'tinymist' then
+            local function preview()
+              client:exec_cmd({
+                title = 'Start Typst preview',
+                command = 'tinymist.startDefaultPreview',
+                arguments = {},
+              }, { bufnr = event.buf }, function(err)
+                if err then
+                  vim.notify('Typst preview: ' .. err.message, vim.log.levels.ERROR)
+                end
+              end)
+            end
+
+            vim.api.nvim_buf_create_user_command(event.buf, 'LspTinymistPreview', preview, {
+              desc = 'Open a live Typst preview in the browser',
+              force = true,
+            })
+            map('<leader>tp', preview, 'Typst [P]review')
+          end
+
           if client and client:supports_method('textDocument/documentHighlight', event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
