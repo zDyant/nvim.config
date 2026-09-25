@@ -44,6 +44,7 @@ return {
         scss = { 'prettierd', 'prettier', stop_after_first = true },
         sh = { 'shfmt' },
         toml = { 'taplo' },
+        typst = { lsp_format = 'fallback' },
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
         typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         yaml = { 'prettierd', 'prettier', stop_after_first = true },

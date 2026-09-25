@@ -131,6 +131,11 @@ return {
       local servers = {
         rust_analyzer = {},
         ts_ls = {},
+        tinymist = {
+          settings = {
+            formatterMode = 'typstyle',
+          },
+        },
         astro = {},
         hyprls = {},
         cssls = {},
@@ -199,6 +204,7 @@ return {
         'stylua', -- Lua formatter
         'taplo', -- TOML formatter
         'tex-fmt', -- LaTeX formatter
+        'tinymist', -- Typst LSP and formatter
         'tree-sitter-cli',
         'typescript-language-server', -- JS/TS LSP
       }

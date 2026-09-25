@@ -28,6 +28,7 @@ return {
         'scss',
         'toml',
         'tsx',
+        'typst',
         'typescript',
         'astro',
         'hyprlang',
