@@ -18,6 +18,14 @@ return {
           return 'make install_jsregexp'
         end)(),
         opts = {},
+        config = function(_, opts)
+          local luasnip = require 'luasnip'
+          luasnip.setup(opts)
+
+          require('luasnip.loaders.from_lua').lazy_load {
+            paths = vim.fn.stdpath 'config' .. '/lua/snippets',
+          }
+        end,
       },
     },
     --- @module 'blink.cmp'
